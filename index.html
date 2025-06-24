@@ -281,7 +281,7 @@
         <div class="contacto-input-col">
           <label>Nombre Completo:</label>
           <input type="text" name="nombre" title="Nombre sólo acepta letras y espacios en blanco"
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required />
+            pattern="[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]{2,80}" required />
         </div>
         <div class="contacto-input-col">
           <label>Teléfono:</label>
@@ -294,7 +294,7 @@
         <div class="contacto-input-col">
           <label>Correo Electrónico:</label>
           <input type="email" name="email" title="El email no es válido"
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required />
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required />
         </div>
         <div class="contacto-input-col">
           <label>Desarrollo que visitas:</label>
