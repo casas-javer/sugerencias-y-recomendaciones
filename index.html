@@ -449,14 +449,19 @@
         }
 
         const formData = new FormData(formulario);
+        // Convertir FormData a objeto simple
+        const data = Object.fromEntries(formData.entries());
 
         fetch(formulario.action, {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data), // enviar JSON en lugar de FormData
         })
           .then(response => {
             if (!response.ok) throw new Error("Error en el envío");
-            return response.json(); // o response.text() según backend
+            return response.json();
           })
           .then(data => {
             // Redirigir a la URL deseada si todo sale bien
