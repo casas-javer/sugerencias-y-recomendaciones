@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Contacto</title>
+  <link rel="stylesheet" href="css/App.css">
+  <link rel="stylesheet" href="css/Contacto.css">
+  <link rel="stylesheet" href="css/tailwind.css">
+  <link rel="stylesheet" href="index.css">
+
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .contacto-outer {
+
+        padding: 20px;
+      }
+
+    }
+
+    .transition-colors {
+      transition-duration: .15s;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+      transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .ring-offset-background {
+      --tw-ring-offset-color: hsl(var(--background));
+    }
+
+    .text-primary-foreground {
+      color: hsl(var(--primary-foreground));
+    }
+
+    .font-semibold {
+      font-weight: 600;
+    }
+
+    .text-sm {
+      font-size: .875rem;
+      line-height: 1.25rem;
+    }
+
+    .px-8 {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .rounded-md {
+      border-radius: calc(var(--radius) - 2px);
+    }
+
+    .whitespace-nowrap {
+      white-space: nowrap;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .h-11 {
+      height: 2.75rem;
+    }
+
+    .hover\:bg-primary\/70:hover {
+      background-color: hsl(var(--primary) / .7);
+    }
+
+    [role=button],
+    button {
+      cursor: pointer;
+    }
+
+    input[type=checkbox] {
+      /* Double-sized Checkboxes */
+      -ms-transform: scale(2);
+      /* IE */
+      -moz-transform: scale(2);
+      /* FF */
+      -webkit-transform: scale(2);
+      /* Safari and Chrome */
+      -o-transform: scale(2);
+      /* Opera */
+      transform: scale(2);
+      padding: 10px;
+      margin-left: 10px;
+    }
+
+    /* Might want to wrap a span around your checkbox text */
+    .checkboxtext {
+      /* Checkbox text */
+      font-size: 110%;
+      display: inline;
+    }
+
+    @media (min-width: 768px) {
+      .md\:w-fit {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+      }
+    }
+
+    h3 {
+      font-family: Viga;
+      font-size: 1.875rem !important;
+      font-weight: 400;
+
+    }
+
+    @media (min-width: 1024px) {
+      h3 {
+        font-size: 3rem !important;
+        line-height: 1 !important;
+      }
+    }
+
+    .text-primary {
+      color: hsl(var(--primary));
+    }
+
+    .bg-primary {
+      background-color: hsl(var(--primary));
+      border: none;
+    }
+
+    .head-logo {
+      display: flex;
+      padding-top: 2rem;
+    }
+
+    div a img.logo {
+      max-width: 250px;
+    }
+
+    .container-fluid.footer {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      background: #f1f1f1;
+      padding: 2rem 0;
+      font-size: 1.2rem;
+      color: var(--main-grey);
+    }
+
+    /* contact form validation */
+
+    /* **********     ContactForm Validations     ********** */
+
+    /* **********     ContactForm Validations     ********** */
+    .contact-form {
+      --form-ok-color: #4caf50;
+      /* --form-error-color: #f44336; */
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+    }
+
+    .contact-form>* {
+      padding: 0.5rem;
+      margin: 1rem auto;
+      display: block;
+      /* width: 100%; */
+    }
+
+    .contact-form textarea {
+      resize: none;
+    }
+
+    .contact-form legend,
+    .contact-form-response {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      font-size: 1rem;
+      font-family: sans-serif;
+    }
+
+    .contact-form input[type="submit"] {
+      width: 50%;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .contact-form *::placeholder {
+      color: #000;
+    }
+
+    .contact-form [required]:valid {
+      border: thin solid var(--form-ok-color);
+    }
+
+    .contact-form [required]:invalid {
+      border: thin solid var(--form-error-color);
+    }
+
+    .contact-form-error {
+      margin-top: 1px;
+      font-size: 100%;
+      color: #cc0f19;
+      transition: all 800ms ease;
+    }
+
+    .contact-form-error.is-active {
+      display: block;
+      animation: show-message 1s 1 normal 0s ease-out both;
+    }
+
+    .none {
+      display: none;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      /* Reduce la opacidad del botón cuando está deshabilitado */
+      cursor: not-allowed;
+      /* Cambia el cursor a 'no permitido' */
+      /* Puedes añadir estilos adicionales según tus necesidades */
+    }
+
+    @keyframes show-message {
+      0% {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      100% {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  </style>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+  <div class="head-logo" style="margin: auto;">
+    <a style="margin: auto;" href="https://javer.com.mx"><img style="margin: auto;" src="img/bar-logo.png" alt="logo"
+        class="w-28 lg:w-44 logo"></a>
+  </div>
+
+
+
+  
+
+  <form id="form1" class="contacto-outer contact-form " action="https://nodejs-kappa-fawn.vercel.app/enviar-correo"
+    method="POST">
+
+
+    <div class="contacto-form">
+      <h3 style="margin: 2rem auto 20px auto; font-family: 'Viga', sans-serif; font-weight: 100;"
+        class="main-title-eti py-5 pb-4 text-primary">Comentarios y sugerencias</h3>
+
+      <div class="my-8">
+        <h4 style="font-size: 1.5rem; margin-top: 20px;" class="text-center ">Su opinión es importante para nosotros
+        </h4>
+        <p class="text-neutral-400 text-center mt-6 uppercase"> En Javer, nos comprometemos a ofrecer a nuestros
+          clientes la
+          mejor experiencia posible. Por eso, valoramos mucho su opinión.</p>
+      </div>
+      <hr style="margin: 2rem 0;">
+      <div class="contacto-row">
+        <div class="contacto-input-col"><label>Nombre Completo:</label>
+
+          <input type="text" name="nombre" title="Nombre sólo acepta letras y espacios en blanco"
+            pattern="[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]{2,80}" required>
+          <!-- 
+          <input type="text" title="El nombre solo acepta letras" class="form-control" id="nombre" name="nombre"
+            pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required> -->
+        </div>
+        <div class="contacto-input-col"><label>Teléfono:</label>
+          <input type="tel" name="telefono" title="Teléfono debe tener entre 8 y 10 dígitos" pattern="[0-9]{8,10}"
+            required>
+
+
+
+          <!-- <input type="number" class="form-control" id="telefono"
+            pattern="/^\d{10}$/" name="telefono" required
+            title="El Teléfono es requerido y solo debe llevar 10 números"> -->
+        </div>
+      </div>
+      <div class="contacto-row">
+
+
+
+        <div class="contacto-input-col"><label>Correo Electrónico:</label>
+          <input type="email" name="email" title="El email no es válido"
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+
+          <!-- <input type="email" id="email"
+            title="El email es incorrecto" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+            name="email" required> -->
+        </div>
+        <div class="contacto-input-col"><label>Desarrollo que visitas:</label>
+
+          <input type="text" name="desarrollo" title="El desarrollo sólo acepta letras y espacios en blanco"
+            pattern="[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]{2,80}" required>
+
+          <!-- <input type="text" name="desarrollo"
+            required title="El Desarrollo es requerido y solo debe llevar letras" pattern="/^.{1,500}$/"> -->
+        </div>
+      </div>
+
+
+
+      <div class="contacto-row">
+        <div class="contacto-input-col"><label>Sugerencia/recomendación:</label>
+          <textarea name="mensaje" title="Tu sugerencia no debe ser mayor de 500 caracteres" required></textarea>
+        </div>
+      </div>
+
+        <div class="g-recaptcha" data-sitekey="6LdxGWwrAAAAAP3bxmkm37nNQjDnFnSqAjzJ2hQr"></div>
+      <div class="contacto-row cor2">
+
+
+        <input type="checkbox" id="terminos" required name="acceptPolicy" required="">
+        <div style="cursor: pointer;">Acepto las políticas <a style="padding-left: 5px;"
+            href="https://www.javer.com.mx/avisos-de-privacidad"> Políticas de privacidad</a></div>
+      </div> <br><br>
+      <!-- <div class="contacto-row">
+      <div class="contacto-col">
+        <div>
+          <div>
+            <div style="width: 304px; height: 78px;">
+              <div><iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-k9xkmad2wnns"
+                  frameborder="0" scrolling="no"
+                  sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation"
+                  src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Lcg2vQZAAAAAHpqmf6Pj_-t-doxKr1iwLWfQuWQ&amp;co=aHR0cHM6Ly93d3cuamF2ZXIuY29tLm14OjQ0Mw..&amp;hl=es-419&amp;type=image&amp;v=rKbTvxTxwcw5VqzrtN-ICwWt&amp;theme=light&amp;size=normal&amp;badge=bottomright&amp;cb=yijr9ovxwp8e"></iframe>
+              </div><textarea id="g-recaptcha-response-1" name="g-recaptcha-response" class="g-recaptcha-response"
+                style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+            </div><iframe style="display: none;"></iframe>
+          </div>
+        </div><button class="enviar-button" disabled="">Enviar</button>
+      </div>
+    </div> -->
+
+  
+      <div class="col-span-1 sm:col-span-2">
+        <button id="enviar" disabled
+          class="inline-flex items-center justify-center whitespace-nowrap text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/70 h-11 rounded-md px-8 w-full md:w-fit"
+          type="submit">Enviar</button>
+      </div>
+      <div class="contact-form-loader none">
+        <img src="assets/" alt="Cargando">
+      </div>
+      <div class="contact-form-response none">
+        <p>Los datos han sido enviados</p>
+      </div>
+
+    </div>
+
+  </form>
+
+
+
+  <!-- <form id="contactForm" action="https://nodejs-kappa-fawn.vercel.app/enviar-correo" method="POST">
+
+
+    <input type="text" class="form-control" id="nombre" placeholder="Nombre completo" name="nombre" required>
+    <br><br>
+
+    <input type="number" class="form-control" id="telefono" placeholder="Teléfono/celular" name="telefono"
+      minlength="10" maxlength="10" required> <br><br>
+
+
+    <input type="email" class="form-control" id="correo" placeholder="Correo electrónico"
+      pattern="/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/i" name="correo" required>
+
+    <br><br>
+
+    <input type="text" class="form-control" id="desarrollo" placeholder="Desarrollo que visitas" name="desarrollo"
+      required> <br><br>
+
+   <label for="mensaje">Mensaje:</label><br> 
+    <textarea class="form-control" id="sugerencia" placeholder="Sugerencia/recomendación" name="sugerencia"
+      required></textarea>
+    <br><br>
+
+    <button type="submit">Enviar</button>
+  </form> -->
+  <div class="container-fluid footer px-0 pb-5 bg-secondary px-4">
+    <div class=" py-0 row">
+      <div class="d-flex justify-content-center border-top">
+        <p class="fw-bolder mt-5 text-center text-black-50">
+          ¡Agradecemos su tiempo y su opinión!
+          <br>
+          Estamos comprometidos a mejorar continuamente, y sus
+          comentarios nos ayudan a lograrlo.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const d = document;
+    const $form = d.querySelector(".contact-form"),
+      $inputs = d.querySelectorAll(".contact-form [required]");
+
+
+    $inputs.forEach(input => {
+      const $span = d.createElement("span");
+      $span.id = input.name;
+
+      $span.textContent = input.title;
+
+      $span.classList.add("contact-form-error", "none");
+      input.insertAdjacentElement("afterend", $span)
+
+    });
+
+    d.addEventListener("keyup", (e) => {
+      if (e.target.matches(".contact-form [required]")) {
+        const $input = e.target;
+        const pattern = $input.pattern || $input.dataset.pattern;
+        const $errorSpan = d.getElementById($input.name);
+
+        if (pattern && $input.value !== "") {
+          const regex = new RegExp(pattern);
+          const isValid = regex.test($input.value);
+
+          if (!isValid) {
+            $errorSpan.classList.add("is-active");
+          } else {
+            $errorSpan.classList.remove("is-active");
+          }
+        } else {
+          // Si no hay patrón definido, no se muestra mensaje de error
+          $errorSpan.classList.remove("is-active");
+        }
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const telefonoInput = document.querySelector('input[name="telefono"]');
+      const emailInput = document.querySelector('input[name="email"]');
+      const nombreInput = document.querySelector('input[name="nombre"]');
+      const desarrolloInput = document.querySelector('input[name="desarrollo"]');
+      const mensajeInput = document.querySelector('textarea[name="mensaje"]');
+      const checkboxTerminos = document.getElementById('terminos');
+      const botonEnviar = document.getElementById('enviar');
+      const formulario = document.getElementById("miFormulario");
+      
+      telefonoInput.addEventListener('keyup', function () {
+        let valor = this.value.trim();
+        // Eliminar todo lo que no sea dígitos
+        valor = valor.replace(/\D/g, '');
+        // Limitar a un máximo de 10 caracteres
+        valor = valor.substring(0, 10);
+        // Asignar el valor modificado de vuelta al campo
+        this.value = valor;
+      });
+
+      nombreInput.addEventListener('keyup', function (event) {
+        let valor = this.value;
+        let newValue = '';
+
+        // Filtrar y mantener solo letras y espacios
+        for (let i = 0; i < valor.length; i++) {
+          const char = valor.charAt(i);
+          if (/^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]$/.test(char)) {
+            newValue += char;
+          }
+        }
+
+        // Limitar a un máximo de 80 caracteres
+        newValue = newValue.substring(0, 80);
+
+        // Asignar el valor modificado de vuelta al campo
+        this.value = newValue;
+      });
+
+      emailInput.addEventListener('keyup', function (event) {
+        let valor = this.value;
+        // Asignar el valor modificado de vuelta al campo
+        this.value = valor.trim();  // Eliminar espacios en blanco al inicio y final
+
+        // Limitar a un máximo de 254 caracteres (longitud máxima de un correo electrónico según especificaciones)
+        if (valor.length > 254) {
+          this.value = valor.substring(0, 254);
+        }
+      });
+
+      desarrolloInput.addEventListener('keyup', function (event) {
+        let valor = this.value;
+        let newValue = '';
+
+        // Filtrar y mantener solo letras y espacios
+        for (let i = 0; i < valor.length; i++) {
+          const char = valor.charAt(i);
+          if (/^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]$/.test(char)) {
+            newValue += char;
+          }
+        }
+
+        // Limitar a un máximo de 80 caracteres
+        newValue = newValue.substring(0, 80);
+
+        // Asignar el valor modificado de vuelta al campo
+        this.value = newValue;
+      });
+
+
+
+      mensajeInput.addEventListener('keyup', function (event) {
+        let valor = this.value;
+
+        // Limitar a un máximo de 500 caracteres
+        if (valor.length > 500) {
+          this.value = valor.substring(0, 500);
+        }
+      });
+
+
+      checkboxTerminos.addEventListener('change', function () {
+        botonEnviar.disabled = !this.checked;
+      });
+
+
+
+      formulario.addEventListener("submit", function (event) {
+        event.preventDefault(); // Evita el envío del formulario por defecto
+
+        // Aquí podrías agregar lógica adicional para validar el formulario antes de enviarlo
+
+        // Simulando un envío exitoso del formulario
+        const exitoEnvio = true; // Cambiar a true si el envío es exitoso
+
+        if (exitoEnvio) {
+          // Redirigir a la página de gracias
+          window.location.href = "pagina-de-gracias.html";
+        }
+      });
+
+
+
+      
+
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

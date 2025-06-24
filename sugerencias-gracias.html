@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/App.css">
+    <link rel="stylesheet" href="css/Contacto.css">
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="index.css">
+    
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .contacto-outer {
+
+        padding: 20px;
+      }
+
+    }
+
+    .transition-colors {
+      transition-duration: .15s;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+      transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .ring-offset-background {
+      --tw-ring-offset-color: hsl(var(--background));
+    }
+
+    .text-primary-foreground {
+      color: hsl(var(--primary-foreground));
+    }
+
+    .font-semibold {
+      font-weight: 600;
+    }
+
+    .text-sm {
+      font-size: .875rem;
+      line-height: 1.25rem;
+    }
+
+    .px-8 {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .rounded-md {
+      border-radius: calc(var(--radius) - 2px);
+    }
+
+    .whitespace-nowrap {
+      white-space: nowrap;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .h-11 {
+      height: 2.75rem;
+    }
+
+    .hover\:bg-primary\/70:hover {
+      background-color: hsl(var(--primary) / .7);
+    }
+
+    [role=button],
+    button {
+      cursor: pointer;
+    }
+
+    input[type=checkbox] {
+      /* Double-sized Checkboxes */
+      -ms-transform: scale(2);
+      /* IE */
+      -moz-transform: scale(2);
+      /* FF */
+      -webkit-transform: scale(2);
+      /* Safari and Chrome */
+      -o-transform: scale(2);
+      /* Opera */
+      transform: scale(2);
+      padding: 10px;
+      margin-left: 10px;
+    }
+
+    /* Might want to wrap a span around your checkbox text */
+    .checkboxtext {
+      /* Checkbox text */
+      font-size: 110%;
+      display: inline;
+    }
+
+    @media (min-width: 768px) {
+      .md\:w-fit {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+      }
+    }
+
+    h3 {
+      font-family: Viga;
+      font-size: 1.875rem !important;
+      font-weight: 400;
+
+    }
+
+    @media (min-width: 1024px) {
+      h3 {
+        font-size: 3rem !important;
+        line-height: 1 !important;
+      }
+    }
+
+    .text-primary {
+      color: hsl(var(--primary));
+    }
+
+    .bg-primary {
+      background-color: hsl(var(--primary));
+      border: none;
+    }
+
+    .head-logo {
+      display: flex;
+      padding-top: 2rem;
+    }
+
+    div a img.logo {
+      max-width: 250px;
+    }
+
+    .container-fluid.footer {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      background: #f1f1f1;
+      padding: 2rem 0;
+      font-size: 1.2rem;
+      color: var(--main-grey);
+    }
+
+    /* contact form validation */
+
+    /* **********     ContactForm Validations     ********** */
+
+    /* **********     ContactForm Validations     ********** */
+    .contact-form {
+      --form-ok-color: #4caf50;
+      /* --form-error-color: #f44336; */
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+    }
+
+    .contact-form>* {
+      padding: 0.5rem;
+      margin: 1rem auto;
+      display: block;
+      /* width: 100%; */
+    }
+
+    .contact-form textarea {
+      resize: none;
+    }
+
+    .contact-form legend,
+    .contact-form-response {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      font-size: 1rem;
+      font-family: sans-serif;
+    }
+
+    .contact-form input[type="submit"] {
+      width: 50%;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .contact-form *::placeholder {
+      color: #000;
+    }
+
+    .contact-form [required]:valid {
+      border: thin solid var(--form-ok-color);
+    }
+
+    .contact-form [required]:invalid {
+      border: thin solid var(--form-error-color);
+    }
+
+    .contact-form-error {
+      margin-top: 1px;
+      font-size: 100%;
+      color: #cc0f19;
+      transition: all 800ms ease;
+    }
+
+    .contact-form-error.is-active {
+      display: block;
+      animation: show-message 1s 1 normal 0s ease-out both;
+    }
+
+    .none {
+      display: none;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      /* Reduce la opacidad del botón cuando está deshabilitado */
+      cursor: not-allowed;
+      /* Cambia el cursor a 'no permitido' */
+      /* Puedes añadir estilos adicionales según tus necesidades */
+    }
+
+    @keyframes show-message {
+      0% {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      100% {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    .container {
+    /* display: flex; */
+    /* justify-content: center; */
+    /* flex-direction: row; */
+    max-width: 40pc;
+    margin: auto;
+    text-align: center;
+}
+a#enviar {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    text-decoration: none;
+}
+a#enviar:hover{
+  cursor: pointer;
+
+}
+  </style>
+
+</head>
+<body>
+
+    <div class="head-logo" style="margin: auto;">
+        <a style="margin: auto;" href="https://javer.com.mx"><img style="margin: auto;" src="img/bar-logo.png" alt="logo" class="w-28 lg:w-44 logo"></a>
+      </div>
+
+<div class="container">
+    <div class="row">
+        <h3 style="font-size: 2rem !important; font-family: 'Viga', sans-serif; font-weight: 100;"
+        class="main-title-eti py-5 pb-4 text-primary">¡Mensaje enviado con éxito!</h3>
+    
+      <div class="my-8">
+        <h4 style="font-size: 1.5rem; margin-top: 20px;" class="text-center ">
+           Agradecemos tus comentarios
+        </h4>
+        <p class="text-neutral-400 text-center mt-6 uppercase">Hemos recibido tu información y nos comprometemos a proporcionar la mejor experiencia posible a nuestros clientes.</p>
+    </div>   
+    
+    <div class="col-span-1 sm:col-span-2">
+      <a href="https://javer.com.mx" id="enviar"  class="inline-flex items-center justify-center whitespace-nowrap text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/70 h-11 rounded-md px-8 w-full md:w-fit" >Visita nuestra página web</a>
+    </div>
+
+</div>
+
+
+  </div>
+</body>
+</html>
