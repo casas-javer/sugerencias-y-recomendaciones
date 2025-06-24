@@ -261,28 +261,32 @@
     method="POST">
     <div class="contacto-form">
       <h3 style="margin: 2rem auto 20px auto; font-family: 'Viga', sans-serif; font-weight: 100;"
-        class="main-title-eti py-5 pb-4 text-primary">Comentarios y sugerencias</h3>
+        class="main-title-eti py-5 pb-4 text-primary">
+        Comentarios y sugerencias
+      </h3>
 
       <div class="my-8">
-        <h4 style="font-size: 1.5rem; margin-top: 20px;" class="text-center">Su opinión es importante para nosotros</h4>
+        <h4 style="font-size: 1.5rem; margin-top: 20px;" class="text-center">
+          Su opinión es importante para nosotros
+        </h4>
         <p class="text-neutral-400 text-center mt-6 uppercase">
           En Javer, nos comprometemos a ofrecer a nuestros clientes la mejor experiencia posible. Por eso, valoramos
           mucho su opinión.
         </p>
       </div>
 
-      <hr style="margin: 2rem 0;">
+      <hr style="margin: 2rem 0;" />
 
       <div class="contacto-row">
         <div class="contacto-input-col">
           <label>Nombre Completo:</label>
           <input type="text" name="nombre" title="Nombre sólo acepta letras y espacios en blanco"
-            pattern="[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]{2,80}" required>
+            pattern="[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]{2,80}" required />
         </div>
         <div class="contacto-input-col">
           <label>Teléfono:</label>
           <input type="tel" name="telefono" title="Teléfono debe tener entre 8 y 10 dígitos" pattern="[0-9]{8,10}"
-            required>
+            required />
         </div>
       </div>
 
@@ -290,45 +294,46 @@
         <div class="contacto-input-col">
           <label>Correo Electrónico:</label>
           <input type="email" name="email" title="El email no es válido"
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required />
         </div>
         <div class="contacto-input-col">
           <label>Desarrollo que visitas:</label>
           <input type="text" name="desarrollo" title="El desarrollo sólo acepta letras y espacios en blanco"
-            pattern="[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]{2,80}" required>
+            pattern="[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]{2,80}" required />
         </div>
       </div>
 
       <div class="contacto-row">
         <div class="contacto-input-col">
           <label>Sugerencia/recomendación:</label>
-          <textarea name="mensaje" title="Tu sugerencia no debe ser mayor de 500 caracteres" required></textarea>
+          <textarea name="mensaje" title="Tu sugerencia no debe ser mayor de 500 caracteres" maxlength="500"
+            required></textarea>
         </div>
       </div>
 
-      <!-- Aquí va el div de reCAPTCHA -->
+      <!-- reCAPTCHA v2 checkbox -->
       <div class="g-recaptcha" data-sitekey="6LdxGWwrAAAAAP3bxmkm37nNQjDnFnSqAjzJ2hQr"></div>
 
-      <!-- Input oculto para el token de reCAPTCHA -->
-      <!-- <input type="hidden" id="token" name="token" /> -->
-
       <div class="contacto-row cor2">
-        <input type="checkbox" id="terminos" required name="acceptPolicy">
-        <div style="cursor: pointer;">Acepto las políticas
+        <input type="checkbox" id="terminos" required name="acceptPolicy" />
+        <div style="cursor: pointer;">
+          Acepto las políticas
           <a style="padding-left: 5px;" href="https://www.javer.com.mx/avisos-de-privacidad">Políticas de privacidad</a>
         </div>
       </div>
 
-      <br><br>
+      <br /><br />
 
       <div class="col-span-1 sm:col-span-2">
-        <button id="enviar"
+        <button disabled id="enviar"
           class="inline-flex items-center justify-center whitespace-nowrap text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/70 h-11 rounded-md px-8 w-full md:w-fit"
-          type="submit">Enviar</button>
+          type="submit">
+          Enviar
+        </button>
       </div>
 
       <div class="contact-form-loader none">
-        <img src="assets/" alt="Cargando">
+        <img src="assets/" alt="Cargando" />
       </div>
 
       <div class="contact-form-response none">
@@ -336,7 +341,17 @@
       </div>
     </div>
   </form>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+  <script>
+    // Validar que reCAPTCHA esté completado antes de enviar el formulario
+    document.getElementById("form1").addEventListener("submit", function (e) {
+      if (grecaptcha.getResponse() === "") {
+        e.preventDefault();
+        alert("Por favor, verifica que no eres un robot.");
+      }
+    });
+  </script>
 
 
 
@@ -401,7 +416,7 @@
       const mensajeInput = document.querySelector('textarea[name="mensaje"]');
       const checkboxTerminos = document.getElementById('terminos');
       const botonEnviar = document.getElementById('enviar');
-      const formulario = document.getElementById("miFormulario");
+      const formulario = document.getElementById("form1");
 
       telefonoInput.addEventListener('keyup', function () {
         let valor = this.value.trim();
