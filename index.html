@@ -343,17 +343,6 @@
   </form>
 
 
-  <script>
-    // Validar que reCAPTCHA esté completado antes de enviar el formulario
-    document.getElementById("form1").addEventListener("submit", function (e) {
-      if (grecaptcha.getResponse() === "") {
-        e.preventDefault();
-        alert("Por favor, verifica que no eres un robot.");
-      }
-    });
-  </script>
-
-
 
 
   <div class="container-fluid footer px-0 pb-5 bg-secondary px-4">
@@ -374,16 +363,12 @@
     const $form = d.querySelector(".contact-form"),
       $inputs = d.querySelectorAll(".contact-form [required]");
 
-
     $inputs.forEach(input => {
       const $span = d.createElement("span");
       $span.id = input.name;
-
       $span.textContent = input.title;
-
       $span.classList.add("contact-form-error", "none");
       input.insertAdjacentElement("afterend", $span)
-
     });
 
     d.addEventListener("keyup", (e) => {
@@ -395,140 +380,96 @@
         if (pattern && $input.value !== "") {
           const regex = new RegExp(pattern);
           const isValid = regex.test($input.value);
-
           if (!isValid) {
             $errorSpan.classList.add("is-active");
           } else {
             $errorSpan.classList.remove("is-active");
           }
         } else {
-          // Si no hay patrón definido, no se muestra mensaje de error
           $errorSpan.classList.remove("is-active");
         }
       }
     });
 
     document.addEventListener("DOMContentLoaded", function () {
-      const telefonoInput = document.querySelector('input[name="telefono"]');
-      const emailInput = document.querySelector('input[name="email"]');
-      const nombreInput = document.querySelector('input[name="nombre"]');
-      const desarrolloInput = document.querySelector('input[name="desarrollo"]');
-      const mensajeInput = document.querySelector('textarea[name="mensaje"]');
-      const checkboxTerminos = document.getElementById('terminos');
-      const botonEnviar = document.getElementById('enviar');
-      const formulario = document.getElementById("form1");
+      const telefonoInput = d.querySelector('input[name="telefono"]');
+      const emailInput = d.querySelector('input[name="email"]');
+      const nombreInput = d.querySelector('input[name="nombre"]');
+      const desarrolloInput = d.querySelector('input[name="desarrollo"]');
+      const mensajeInput = d.querySelector('textarea[name="mensaje"]');
+      const checkboxTerminos = d.getElementById('terminos');
+      const botonEnviar = d.getElementById('enviar');
+      const formulario = d.getElementById("form1");
 
       telefonoInput.addEventListener('keyup', function () {
         let valor = this.value.trim();
-        // Eliminar todo lo que no sea dígitos
-        valor = valor.replace(/\D/g, '');
-        // Limitar a un máximo de 10 caracteres
-        valor = valor.substring(0, 10);
-        // Asignar el valor modificado de vuelta al campo
+        valor = valor.replace(/\D/g, '').substring(0, 10);
         this.value = valor;
       });
 
-      nombreInput.addEventListener('keyup', function (event) {
+      nombreInput.addEventListener('keyup', function () {
         let valor = this.value;
         let newValue = '';
-
-        // Filtrar y mantener solo letras y espacios
         for (let i = 0; i < valor.length; i++) {
           const char = valor.charAt(i);
-          if (/^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]$/.test(char)) {
-            newValue += char;
-          }
+          if (/^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]$/.test(char)) newValue += char;
         }
-
-        // Limitar a un máximo de 80 caracteres
-        newValue = newValue.substring(0, 80);
-
-        // Asignar el valor modificado de vuelta al campo
-        this.value = newValue;
+        this.value = newValue.substring(0, 80);
       });
 
-      emailInput.addEventListener('keyup', function (event) {
-        let valor = this.value;
-        // Asignar el valor modificado de vuelta al campo
-        this.value = valor.trim();  // Eliminar espacios en blanco al inicio y final
-
-        // Limitar a un máximo de 254 caracteres (longitud máxima de un correo electrónico según especificaciones)
-        if (valor.length > 254) {
-          this.value = valor.substring(0, 254);
-        }
+      emailInput.addEventListener('keyup', function () {
+        let valor = this.value.trim();
+        this.value = valor.length > 254 ? valor.substring(0, 254) : valor;
       });
 
-      desarrolloInput.addEventListener('keyup', function (event) {
+      desarrolloInput.addEventListener('keyup', function () {
         let valor = this.value;
         let newValue = '';
-
-        // Filtrar y mantener solo letras y espacios
         for (let i = 0; i < valor.length; i++) {
           const char = valor.charAt(i);
-          if (/^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]$/.test(char)) {
-            newValue += char;
-          }
+          if (/^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]$/.test(char)) newValue += char;
         }
-
-        // Limitar a un máximo de 80 caracteres
-        newValue = newValue.substring(0, 80);
-
-        // Asignar el valor modificado de vuelta al campo
-        this.value = newValue;
+        this.value = newValue.substring(0, 80);
       });
 
-
-
-      mensajeInput.addEventListener('keyup', function (event) {
-        let valor = this.value;
-
-        // Limitar a un máximo de 500 caracteres
-        if (valor.length > 500) {
-          this.value = valor.substring(0, 500);
-        }
+      mensajeInput.addEventListener('keyup', function () {
+        if (this.value.length > 500) this.value = this.value.substring(0, 500);
       });
-
 
       checkboxTerminos.addEventListener('change', function () {
         botonEnviar.disabled = !this.checked;
       });
 
-
-
       formulario.addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita el envío del formulario por defecto
+        event.preventDefault();
 
-        // Aquí podrías agregar lógica adicional para validar el formulario antes de enviarlo
-
-        // Simulando un envío exitoso del formulario
-        const exitoEnvio = true; // Cambiar a true si el envío es exitoso
-
-        if (exitoEnvio) {
-          // Redirigir a la página de gracias
-          window.location.href = "pagina-de-gracias.html";
+        if (grecaptcha.getResponse() === "") {
+          alert("Por favor, verifica que no eres un robot.");
+          return;
         }
+
+        const formData = new FormData(formulario);
+
+        fetch(formulario.action, {
+          method: "POST",
+          body: formData,
+        })
+          .then(response => {
+            if (!response.ok) throw new Error("Error en el envío");
+            return response.json(); // o response.text() según backend
+          })
+          .then(data => {
+            // Redirigir a la URL deseada si todo sale bien
+            window.location.href = "http://javer.com.mx/gracias?utm_source=plazas&utm_medium=QR&utm_campaign=landing&utm_term=buzon";
+          })
+          .catch(error => {
+            alert("Error al enviar el formulario, inténtalo de nuevo.");
+            console.error(error);
+          });
       });
-
-
-
-
-
-
-
-
-
     });
-
-
-
-
-
-
-
-
-
-
   </script>
+
 
 </body>
 
