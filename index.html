@@ -244,7 +244,7 @@
       }
     }
   </style>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -255,143 +255,104 @@
 
 
 
-  
 
-  <form id="form1" class="contacto-outer contact-form " action="https://nodejs-kappa-fawn.vercel.app/enviar-correo"
+
+  <form id="form1" class="contacto-outer contact-form" action="https://nodejs-kappa-fawn.vercel.app/enviar-correo"
     method="POST">
-
-
     <div class="contacto-form">
       <h3 style="margin: 2rem auto 20px auto; font-family: 'Viga', sans-serif; font-weight: 100;"
         class="main-title-eti py-5 pb-4 text-primary">Comentarios y sugerencias</h3>
 
       <div class="my-8">
-        <h4 style="font-size: 1.5rem; margin-top: 20px;" class="text-center ">Su opinión es importante para nosotros
-        </h4>
-        <p class="text-neutral-400 text-center mt-6 uppercase"> En Javer, nos comprometemos a ofrecer a nuestros
-          clientes la
-          mejor experiencia posible. Por eso, valoramos mucho su opinión.</p>
+        <h4 style="font-size: 1.5rem; margin-top: 20px;" class="text-center">Su opinión es importante para nosotros</h4>
+        <p class="text-neutral-400 text-center mt-6 uppercase">
+          En Javer, nos comprometemos a ofrecer a nuestros clientes la mejor experiencia posible. Por eso, valoramos
+          mucho su opinión.
+        </p>
       </div>
-      <hr style="margin: 2rem 0;">
-      <div class="contacto-row">
-        <div class="contacto-input-col"><label>Nombre Completo:</label>
 
+      <hr style="margin: 2rem 0;">
+
+      <div class="contacto-row">
+        <div class="contacto-input-col">
+          <label>Nombre Completo:</label>
           <input type="text" name="nombre" title="Nombre sólo acepta letras y espacios en blanco"
             pattern="[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]{2,80}" required>
-          <!-- 
-          <input type="text" title="El nombre solo acepta letras" class="form-control" id="nombre" name="nombre"
-            pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required> -->
         </div>
-        <div class="contacto-input-col"><label>Teléfono:</label>
+        <div class="contacto-input-col">
+          <label>Teléfono:</label>
           <input type="tel" name="telefono" title="Teléfono debe tener entre 8 y 10 dígitos" pattern="[0-9]{8,10}"
             required>
-
-
-
-          <!-- <input type="number" class="form-control" id="telefono"
-            pattern="/^\d{10}$/" name="telefono" required
-            title="El Teléfono es requerido y solo debe llevar 10 números"> -->
         </div>
       </div>
+
       <div class="contacto-row">
-
-
-
-        <div class="contacto-input-col"><label>Correo Electrónico:</label>
+        <div class="contacto-input-col">
+          <label>Correo Electrónico:</label>
           <input type="email" name="email" title="El email no es válido"
             pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
-
-          <!-- <input type="email" id="email"
-            title="El email es incorrecto" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
-            name="email" required> -->
         </div>
-        <div class="contacto-input-col"><label>Desarrollo que visitas:</label>
-
+        <div class="contacto-input-col">
+          <label>Desarrollo que visitas:</label>
           <input type="text" name="desarrollo" title="El desarrollo sólo acepta letras y espacios en blanco"
             pattern="[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]{2,80}" required>
-
-          <!-- <input type="text" name="desarrollo"
-            required title="El Desarrollo es requerido y solo debe llevar letras" pattern="/^.{1,500}$/"> -->
         </div>
       </div>
 
-
-
       <div class="contacto-row">
-        <div class="contacto-input-col"><label>Sugerencia/recomendación:</label>
+        <div class="contacto-input-col">
+          <label>Sugerencia/recomendación:</label>
           <textarea name="mensaje" title="Tu sugerencia no debe ser mayor de 500 caracteres" required></textarea>
         </div>
       </div>
 
-        <div class="g-recaptcha" data-sitekey="6LdxGWwrAAAAAP3bxmkm37nNQjDnFnSqAjzJ2hQr"></div>
+      <!-- Aquí va el div de reCAPTCHA -->
+      <div class="g-recaptcha" data-sitekey="6LdxGWwrAAAAAP3bxmkm37nNQjDnFnSqAjzJ2hQr"></div>
+
+      <!-- Input oculto para el token de reCAPTCHA -->
+      <input type="hidden" id="token" name="token" />
+
       <div class="contacto-row cor2">
-
-
-        <input type="checkbox" id="terminos" required name="acceptPolicy" required="">
-        <div style="cursor: pointer;">Acepto las políticas <a style="padding-left: 5px;"
-            href="https://www.javer.com.mx/avisos-de-privacidad"> Políticas de privacidad</a></div>
-      </div> <br><br>
-      <!-- <div class="contacto-row">
-      <div class="contacto-col">
-        <div>
-          <div>
-            <div style="width: 304px; height: 78px;">
-              <div><iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-k9xkmad2wnns"
-                  frameborder="0" scrolling="no"
-                  sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation"
-                  src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Lcg2vQZAAAAAHpqmf6Pj_-t-doxKr1iwLWfQuWQ&amp;co=aHR0cHM6Ly93d3cuamF2ZXIuY29tLm14OjQ0Mw..&amp;hl=es-419&amp;type=image&amp;v=rKbTvxTxwcw5VqzrtN-ICwWt&amp;theme=light&amp;size=normal&amp;badge=bottomright&amp;cb=yijr9ovxwp8e"></iframe>
-              </div><textarea id="g-recaptcha-response-1" name="g-recaptcha-response" class="g-recaptcha-response"
-                style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
-            </div><iframe style="display: none;"></iframe>
-          </div>
-        </div><button class="enviar-button" disabled="">Enviar</button>
+        <input type="checkbox" id="terminos" required name="acceptPolicy">
+        <div style="cursor: pointer;">Acepto las políticas
+          <a style="padding-left: 5px;" href="https://www.javer.com.mx/avisos-de-privacidad">Políticas de privacidad</a>
+        </div>
       </div>
-    </div> -->
 
-  
+      <br><br>
+
       <div class="col-span-1 sm:col-span-2">
-        <button id="enviar" disabled
-          class="inline-flex items-center justify-center whitespace-nowrap text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/70 h-11 rounded-md px-8 w-full md:w-fit"
+        <button id="enviar"
+          class="inline-flex items-center justify-center whitespace-nowrap text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/70 h-11 rounded-md px-8 w-full md:w-fit"
           type="submit">Enviar</button>
       </div>
+
       <div class="contact-form-loader none">
         <img src="assets/" alt="Cargando">
       </div>
+
       <div class="contact-form-response none">
         <p>Los datos han sido enviados</p>
       </div>
-
     </div>
-
   </form>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+    // Antes de enviar el formulario, obtiene el token reCAPTCHA y lo asigna al input oculto
+    document.getElementById('form1').addEventListener('submit', function (event) {
+      event.preventDefault(); // Evita el envío automático
+
+      grecaptcha.ready(function () {
+        grecaptcha.execute('6LdxGWwrAAAAAP3bxmkm37nNQjDnFnSqAjzJ2hQr', {action: 'submit'}).then(function (token) {
+          document.getElementById('token').value = token;
+          event.target.submit(); // Ahora sí enviar el formulario
+        });
+      });
+    });
+  </script>
 
 
 
-  <!-- <form id="contactForm" action="https://nodejs-kappa-fawn.vercel.app/enviar-correo" method="POST">
-
-
-    <input type="text" class="form-control" id="nombre" placeholder="Nombre completo" name="nombre" required>
-    <br><br>
-
-    <input type="number" class="form-control" id="telefono" placeholder="Teléfono/celular" name="telefono"
-      minlength="10" maxlength="10" required> <br><br>
-
-
-    <input type="email" class="form-control" id="correo" placeholder="Correo electrónico"
-      pattern="/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/i" name="correo" required>
-
-    <br><br>
-
-    <input type="text" class="form-control" id="desarrollo" placeholder="Desarrollo que visitas" name="desarrollo"
-      required> <br><br>
-
-   <label for="mensaje">Mensaje:</label><br> 
-    <textarea class="form-control" id="sugerencia" placeholder="Sugerencia/recomendación" name="sugerencia"
-      required></textarea>
-    <br><br>
-
-    <button type="submit">Enviar</button>
-  </form> -->
   <div class="container-fluid footer px-0 pb-5 bg-secondary px-4">
     <div class=" py-0 row">
       <div class="d-flex justify-content-center border-top">
@@ -453,7 +414,7 @@
       const checkboxTerminos = document.getElementById('terminos');
       const botonEnviar = document.getElementById('enviar');
       const formulario = document.getElementById("miFormulario");
-      
+
       telefonoInput.addEventListener('keyup', function () {
         let valor = this.value.trim();
         // Eliminar todo lo que no sea dígitos
@@ -547,7 +508,7 @@
 
 
 
-      
+
 
 
 
