@@ -310,7 +310,7 @@
       <div class="g-recaptcha" data-sitekey="6LdxGWwrAAAAAP3bxmkm37nNQjDnFnSqAjzJ2hQr"></div>
 
       <!-- Input oculto para el token de reCAPTCHA -->
-      <input type="hidden" id="token" name="token" />
+      <!-- <input type="hidden" id="token" name="token" /> -->
 
       <div class="contacto-row cor2">
         <input type="checkbox" id="terminos" required name="acceptPolicy">
@@ -337,19 +337,7 @@
     </div>
   </form>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <script>
-    // Antes de enviar el formulario, obtiene el token reCAPTCHA y lo asigna al input oculto
-    document.getElementById('form1').addEventListener('submit', function (event) {
-      event.preventDefault(); // Evita el envío automático
 
-      grecaptcha.ready(function () {
-        grecaptcha.execute('6LdxGWwrAAAAAP3bxmkm37nNQjDnFnSqAjzJ2hQr', {action: 'submit'}).then(function (token) {
-          document.getElementById('token').value = token;
-          event.target.submit(); // Ahora sí enviar el formulario
-        });
-      });
-    });
-  </script>
 
 
 
