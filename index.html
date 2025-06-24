@@ -24,6 +24,10 @@
 
     }
 
+    .none {
+      display: none;
+    }
+
     .transition-colors {
       transition-duration: .15s;
       transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
@@ -325,6 +329,10 @@
       <br /><br />
 
       <div class="col-span-1 sm:col-span-2">
+        <!-- Agrega esto dentro del form, antes del botón Enviar -->
+        <div id="loader" class="none" style="text-align:center; margin-top:10px;">
+          Enviando... ⏳
+        </div>
         <button disabled id="enviar"
           class="inline-flex items-center justify-center whitespace-nowrap text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/70 h-11 rounded-md px-8 w-full md:w-fit"
           type="submit">
@@ -399,6 +407,7 @@
       const mensajeInput = d.querySelector('textarea[name="mensaje"]');
       const checkboxTerminos = d.getElementById('terminos');
       const botonEnviar = d.getElementById('enviar');
+      const loader = d.getElementById('loader');
       const formulario = d.getElementById("form1");
 
       telefonoInput.addEventListener('keyup', function () {
@@ -448,26 +457,32 @@
           return;
         }
 
+        // Mostrar loader y deshabilitar botón
+        loader.classList.remove("none");
+        botonEnviar.disabled = true;
+
         const formData = new FormData(formulario);
-        // Convertir FormData a objeto simple
         const data = Object.fromEntries(formData.entries());
 
         fetch(formulario.action, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data), // enviar JSON en lugar de FormData
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(data),
         })
           .then(response => {
             if (!response.ok) throw new Error("Error en el envío");
             return response.json();
           })
           .then(data => {
-            // Redirigir a la URL deseada si todo sale bien
+            loader.classList.add("none");
+            botonEnviar.disabled = false;
+
             window.location.href = "http://javer.com.mx/gracias?utm_source=plazas&utm_medium=QR&utm_campaign=landing&utm_term=buzon";
           })
           .catch(error => {
+            loader.classList.add("none");
+            botonEnviar.disabled = false;
+
             alert("Error al enviar el formulario, inténtalo de nuevo.");
             console.error(error);
           });
